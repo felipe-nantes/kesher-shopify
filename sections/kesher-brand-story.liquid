@@ -1,0 +1,59 @@
+<section id="the-connection" class="kesher-brand-story kesher-section">
+  <div class="kesher-container kesher-brand-story__wrap" data-kesher-inview>
+    <span class="kesher-kicker" data-kesher-reveal="fade" style="--kesher-delay: 0s;">
+      {{ section.settings.kicker }}
+    </span>
+
+    <h2 class="kesher-brand-story__title" data-kesher-reveal="rise" style="--kesher-delay: 0.3s;">
+      {{ section.settings.word }}
+      <span class="kesher-hebrew">{{ section.settings.hebrew }}</span>
+    </h2>
+
+    <p class="kesher-body kesher-brand-story__lead" data-kesher-reveal="fade" style="--kesher-delay: 0.6s;">
+      {{ section.settings.lead }}
+    </p>
+
+    <div class="kesher-brand-story__copy">
+      {% for block in section.blocks %}
+        {% if block.type == "paragraph" and block.settings.text != blank %}
+          <p class="kesher-body" data-kesher-reveal="fade" style="--kesher-delay: {{ 0.9 | plus: forloop.index0 | times: 0.3 }}s;" {{ block.shopify_attributes }}>
+            {{ block.settings.text }}
+          </p>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="kesher-rule kesher-rule--lg" data-kesher-reveal="rule" style="--kesher-delay: 1.6s;" aria-hidden="true"></div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Brand Story (The Connection)",
+    "settings": [
+      { "type": "text", "id": "kicker", "label": "Kicker", "default": "The Connection" },
+      { "type": "text", "id": "word", "label": "Palavra", "default": "Kesher" },
+      { "type": "text", "id": "hebrew", "label": "Hebraico", "default": "קשר" },
+      { "type": "text", "id": "lead", "label": "Parágrafo principal", "default": "In Hebrew, Kesher means connection — the invisible thread between what is above and what is below." }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "name": "Parágrafo",
+        "settings": [
+          { "type": "textarea", "id": "text", "label": "Texto", "default": "We were born from a conviction: that clothing can carry meaning beyond fabric." }
+        ]
+      }
+    ],
+    "max_blocks": 8,
+    "presets": [
+      {
+        "name": "Kesher — Brand Story (The Connection)",
+        "blocks": [
+          { "type": "paragraph", "settings": { "text": "We were born from a conviction: that clothing can carry meaning beyond fabric. That art from centuries past still speaks to those who listen. That standing firm in a world of noise is the quietest act of rebellion." } },
+          { "type": "paragraph", "settings": { "text": "Each piece is a dialogue — between classical engravings and modern silhouettes, between conviction and the skin that wears it. Kesher is not a trend. It is a posture." } }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+</section>

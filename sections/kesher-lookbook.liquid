@@ -1,0 +1,68 @@
+<section class="kesher-lookbook kesher-section">
+  <div class="kesher-container kesher-lookbook__container" data-kesher-inview>
+    <div class="kesher-lookbook__head" data-kesher-reveal="fade" style="--kesher-delay: 0s;">
+      <span class="kesher-kicker">{{ section.settings.kicker }}</span>
+      <h2 class="kesher-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="kesher-lookbook__grid">
+      {% for block in section.blocks %}
+        {% if block.type == "image" and block.settings.image != blank %}
+          <div
+            class="kesher-lookbook__item {{ block.settings.layout }}"
+            data-kesher-reveal="rise"
+            style="--kesher-delay: {{ forloop.index0 | times: section.settings.stagger | plus: section.settings.base_delay }}s;"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.image | image_url: width: 2200 | image_tag: loading: 'lazy', class: 'kesher-lookbook__img', alt: block.settings.alt | escape }}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Lookbook",
+    "settings": [
+      { "type": "text", "id": "kicker", "label": "Kicker", "default": "Lookbook" },
+      { "type": "text", "id": "title", "label": "Título", "default": "Worn by Men of Conviction" },
+      { "type": "range", "id": "base_delay", "label": "Delay inicial (s)", "min": 0, "max": 1, "step": 0.05, "default": 0.0 },
+      { "type": "range", "id": "stagger", "label": "Stagger por item (s)", "min": 0.05, "max": 0.6, "step": 0.05, "default": 0.2 }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Imagem",
+        "settings": [
+          { "type": "image_picker", "id": "image", "label": "Imagem" },
+          { "type": "text", "id": "alt", "label": "Alt (SEO)", "default": "Editorial look" },
+          {
+            "type": "select",
+            "id": "layout",
+            "label": "Layout do bloco",
+            "default": "kesher-lb--tall",
+            "options": [
+              { "value": "kesher-lb--tall", "label": "Alto (col 1 / row 2)" },
+              { "value": "kesher-lb--normal", "label": "Normal (col 1 / row 1)" },
+              { "value": "kesher-lb--wide", "label": "Largo (col 2 / row 1)" }
+            ]
+          }
+        ]
+      }
+    ],
+    "max_blocks": 12,
+    "presets": [
+      {
+        "name": "Kesher — Lookbook",
+        "blocks": [
+          { "type": "image", "settings": { "layout": "kesher-lb--tall", "alt": "Editorial look — classical engraving tee" } },
+          { "type": "image", "settings": { "layout": "kesher-lb--normal", "alt": "Editorial look — contemplative portrait" } },
+          { "type": "image", "settings": { "layout": "kesher-lb--wide", "alt": "Editorial look — back detail" } },
+          { "type": "image", "settings": { "layout": "kesher-lb--tall", "alt": "Editorial look — off-white heritage tee" } }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+</section>

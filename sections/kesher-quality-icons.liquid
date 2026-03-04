@@ -1,0 +1,78 @@
+<section class="kesher-qualities kesher-section">
+  <div class="kesher-container" data-kesher-inview>
+    <div class="kesher-qualities__head" data-kesher-reveal="fade" style="--kesher-delay: 0s;">
+      <span class="kesher-kicker">{{ section.settings.kicker }}</span>
+      <h2 class="kesher-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="kesher-qualities__grid">
+      {% for block in section.blocks %}
+        {% if block.type == "quality" %}
+          <div class="kesher-qualities__item" data-kesher-reveal="rise" style="--kesher-delay: {{ forloop.index0 | times: section.settings.stagger }}s;" {{ block.shopify_attributes }}>
+            <div class="kesher-qualities__icon" aria-hidden="true">
+              {% case block.settings.icon %}
+                {% when 'layers' %}{% render 'kesher-icon-layers' %}
+                {% when 'maximize' %}{% render 'kesher-icon-maximize' %}
+                {% when 'pen' %}{% render 'kesher-icon-pen' %}
+                {% when 'timer' %}{% render 'kesher-icon-timer' %}
+                {% when 'package' %}{% render 'kesher-icon-package' %}
+                {% else %}{% render 'kesher-icon-layers' %}
+              {% endcase %}
+            </div>
+            <div class="kesher-qualities__text">
+              <p class="kesher-qualities__title">{{ block.settings.title }}</p>
+              <p class="kesher-qualities__desc">{{ block.settings.desc }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Craftsmanship (Quality Icons)",
+    "settings": [
+      { "type": "text", "id": "kicker", "label": "Kicker", "default": "Craftsmanship" },
+      { "type": "text", "id": "title", "label": "Título", "default": "Designed with Purpose" },
+      { "type": "range", "id": "stagger", "label": "Stagger (s)", "min": 0.05, "max": 0.4, "step": 0.05, "default": 0.15 }
+    ],
+    "blocks": [
+      {
+        "type": "quality",
+        "name": "Qualidade",
+        "settings": [
+          {
+            "type": "select",
+            "id": "icon",
+            "label": "Ícone",
+            "default": "layers",
+            "options": [
+              { "value": "layers", "label": "Layers" },
+              { "value": "maximize", "label": "Maximize" },
+              { "value": "pen", "label": "Pen" },
+              { "value": "timer", "label": "Timer" },
+              { "value": "package", "label": "Package" }
+            ]
+          },
+          { "type": "text", "id": "title", "label": "Título", "default": "Heavy Cotton" },
+          { "type": "text", "id": "desc", "label": "Descrição", "default": "Premium 240gsm fabric" }
+        ]
+      }
+    ],
+    "max_blocks": 8,
+    "presets": [
+      {
+        "name": "Kesher — Craftsmanship (Quality Icons)",
+        "blocks": [
+          { "type": "quality", "settings": { "icon": "layers", "title": "Heavy Cotton", "desc": "Premium 240gsm fabric" } },
+          { "type": "quality", "settings": { "icon": "maximize", "title": "Oversized Fit", "desc": "Relaxed silhouette" } },
+          { "type": "quality", "settings": { "icon": "pen", "title": "Artistic Design", "desc": "Classical engravings" } },
+          { "type": "quality", "settings": { "icon": "timer", "title": "Limited Drops", "desc": "Exclusive editions" } },
+          { "type": "quality", "settings": { "icon": "package", "title": "Careful Packaging", "desc": "Delivered with intention" } }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+</section>

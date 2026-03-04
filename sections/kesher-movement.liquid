@@ -1,0 +1,44 @@
+<section class="kesher-movement kesher-section">
+  <div class="kesher-container" data-kesher-inview>
+    <div class="kesher-movement__head" data-kesher-reveal="fade" style="--kesher-delay: 0s;">
+      <span class="kesher-kicker">{{ section.settings.kicker }}</span>
+      <h2 class="kesher-title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div
+      class="kesher-movement__frame"
+      data-kesher-reveal="fade"
+      style="--kesher-delay: {{ section.settings.video_delay }}s;"
+    >
+      {% if section.settings.video_url != blank %}
+        <video
+          class="kesher-movement__video"
+          src="{{ section.settings.video_url }}"
+          autoplay
+          loop
+          muted
+          playsinline
+          preload="metadata"
+        ></video>
+        <div class="kesher-movement__overlay" aria-hidden="true"></div>
+      {% else %}
+        <div class="kesher-movement__placeholder">
+          Adicione a URL de um vídeo .mp4 nas configurações da seção.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Movement",
+    "settings": [
+      { "type": "text", "id": "kicker", "label": "Kicker", "default": "Movement" },
+      { "type": "text", "id": "title", "label": "Título", "default": "The Garment in Motion" },
+      { "type": "url", "id": "video_url", "label": "URL do vídeo (.mp4)" },
+      { "type": "range", "id": "video_delay", "label": "Delay do vídeo (s)", "min": 0, "max": 2, "step": 0.05, "default": 0.3 }
+    ],
+    "presets": [{ "name": "Kesher — Movement" }]
+  }
+  {% endschema %}
+</section>

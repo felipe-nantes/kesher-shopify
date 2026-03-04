@@ -1,0 +1,92 @@
+<section class="kesher-collection kesher-section">
+  <div class="kesher-container" data-kesher-inview>
+    <div class="kesher-collection__head" data-kesher-reveal="fade" style="--kesher-delay: 0s;">
+      <span class="kesher-kicker">{{ section.settings.kicker }}</span>
+      <h2 class="kesher-title kesher-collection__title">{{ section.settings.title }}</h2>
+    </div>
+
+    {% assign col = section.settings.collection %}
+
+    {% if col != blank and col.products_count > 0 %}
+      <div class="kesher-collection__grid">
+        {% for product in col.products limit: section.settings.limit %}
+          <div
+            class="kesher-collection__cell"
+            data-kesher-reveal="rise"
+            style="--kesher-delay: {{ section.settings.base_delay | plus: forloop.index0 | times: section.settings.stagger }}s;"
+          >
+            <a class="kesher-collection__card" href="{{ product.url }}">
+              <div class="kesher-collection__media">
+                {% if product.featured_image != blank %}
+                  {{ product.featured_image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'kesher-collection__img', alt: product.title | escape }}
+                {% else %}
+                  <div class="kesher-collection__img-fallback"></div>
+                {% endif %}
+              </div>
+
+              <div class="kesher-collection__overlay" aria-hidden="true"></div>
+
+              <div class="kesher-collection__meta">
+                {% if section.settings.subtitle_source == "metafield" and section.settings.subtitle_metafield != blank %}
+                  {% assign sub = product.metafields[section.settings.subtitle_namespace][section.settings.subtitle_key] %}
+                  {% if sub != blank %}
+                    <p class="kesher-collection__subtitle">{{ sub.value }}</p>
+                  {% endif %}
+                {% elsif section.settings.subtitle_source == "vendor" %}
+                  <p class="kesher-collection__subtitle">{{ product.vendor }}</p>
+                {% elsif section.settings.subtitle_source == "type" %}
+                  <p class="kesher-collection__subtitle">{{ product.type }}</p>
+                {% endif %}
+
+                <h3 class="kesher-collection__name">{{ product.title }}</h3>
+
+                <p class="kesher-collection__price">
+                  {{ product.price | money }}
+                </p>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="kesher-collection__empty">
+        Selecione uma coleção nas configurações desta seção (Theme Editor) e garanta que ela tenha produtos.
+      </div>
+    {% endif %}
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Collection Grid",
+    "settings": [
+      { "type": "text", "id": "kicker", "label": "Kicker", "default": "Collection I" },
+      { "type": "text", "id": "title", "label": "Título", "default": "Those Who Stand" },
+
+      { "type": "collection", "id": "collection", "label": "Coleção" },
+      { "type": "range", "id": "limit", "label": "Quantidade de produtos", "min": 2, "max": 12, "step": 1, "default": 4 },
+
+      {
+        "type": "select",
+        "id": "subtitle_source",
+        "label": "Fonte do subtítulo (linha pequena)",
+        "default": "metafield",
+        "options": [
+          { "value": "metafield", "label": "Metafield (recomendado)" },
+          { "value": "vendor", "label": "Vendor" },
+          { "value": "type", "label": "Product type" },
+          { "value": "none", "label": "Sem subtítulo" }
+        ]
+      },
+
+      { "type": "text", "id": "subtitle_namespace", "label": "Metafield namespace (ex: custom)", "default": "custom" },
+      { "type": "text", "id": "subtitle_key", "label": "Metafield key (ex: subtitle)", "default": "subtitle" },
+
+      { "type": "range", "id": "base_delay", "label": "Delay inicial (s)", "min": 0, "max": 1, "step": 0.05, "default": 0.2 },
+      { "type": "range", "id": "stagger", "label": "Stagger por card (s)", "min": 0.05, "max": 0.4, "step": 0.05, "default": 0.15 }
+    ],
+    "presets": [
+      { "name": "Kesher — Collection Grid" }
+    ]
+  }
+  {% endschema %}
+</section>

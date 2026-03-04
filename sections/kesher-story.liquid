@@ -1,0 +1,54 @@
+<section id="philosophy" class="kesher-philosophy kesher-section">
+  <div class="kesher-container kesher-philosophy__wrap" data-kesher-inview>
+    <span class="kesher-kicker" data-kesher-reveal="fade" style="--kesher-delay: 0s;">
+      {{ section.settings.kicker }}
+    </span>
+
+    <h2 class="kesher-philosophy__title" data-kesher-reveal="rise" style="--kesher-delay: 0.2s;">
+      {{ section.settings.word }}
+      <span class="kesher-hebrew">{{ section.settings.hebrew }}</span>
+      {{ section.settings.suffix }}
+    </h2>
+
+    {% for block in section.blocks %}
+      {% if block.type == "paragraph" and block.settings.text != blank %}
+        <p class="kesher-body" data-kesher-reveal="fade" style="--kesher-delay: {{ 0.5 | plus: forloop.index0 | times: 0.3 }}s;" {{ block.shopify_attributes }}>
+          {{ block.settings.text }}
+        </p>
+      {% endif %}
+    {% endfor %}
+
+    <div class="kesher-rule" data-kesher-reveal="rule" style="--kesher-delay: 1.2s;" aria-hidden="true"></div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Philosophy",
+    "settings": [
+      { "type": "text", "id": "kicker", "label": "Kicker", "default": "Philosophy" },
+      { "type": "text", "id": "word", "label": "Palavra", "default": "Kesher" },
+      { "type": "text", "id": "hebrew", "label": "Hebraico", "default": "קשר" },
+      { "type": "text", "id": "suffix", "label": "Sufixo", "default": "means connection." }
+    ],
+    "blocks": [
+      {
+        "type": "paragraph",
+        "name": "Parágrafo",
+        "settings": [
+          { "type": "textarea", "id": "text", "label": "Texto", "default": "Between what is above and what is below. Between conviction and silence." }
+        ]
+      }
+    ],
+    "max_blocks": 6,
+    "presets": [
+      {
+        "name": "Kesher — Philosophy",
+        "blocks": [
+          { "type": "paragraph", "settings": { "text": "Between what is above and what is below. Between conviction and silence. Between the art of those who came before and the fabric that touches your skin today." } },
+          { "type": "paragraph", "settings": { "text": "Each piece carries a narrative — drawn from classical engravings, shaped by timeless stories of those who stood firm when the world demanded otherwise." } }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+</section>

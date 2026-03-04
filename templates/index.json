@@ -1,7 +1,14 @@
 {
   "sections": {
     "hero": { "type": "kesher-hero" },
-    "manifesto": { "type": "kesher-manifesto" }
+    "manifesto": { "type": "kesher-manifesto" },
+    "collection": { "type": "kesher-collection" },
+    "lookbook": { "type": "kesher-lookbook" },
+    "movement": { "type": "kesher-movement" },
+    "brand_story": { "type": "kesher-brand-story" },
+    "story": { "type": "kesher-story" },
+    "quality": { "type": "kesher-quality-icons" },
+    "shipping": { "type": "kesher-shipping" }
   },
-  "order": ["hero", "manifesto"]
+  "order": ["hero","manifesto","collection","lookbook","movement","brand_story","story","quality","shipping"]
 }

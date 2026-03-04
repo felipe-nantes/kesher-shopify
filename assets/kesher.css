@@ -153,3 +153,350 @@
 .kesher-is-visible [data-kesher-reveal="rule"]{
   transform: scaleX(1);
 }
+
+/* ---------- Lookbook ---------- */
+.kesher-lookbook{
+  padding: 128px 0;
+  background: var(--kesher-bg);
+}
+.kesher-lookbook__container{ max-width: 1400px; }
+.kesher-lookbook__head{
+  text-align:center;
+  margin-bottom: 80px;
+}
+.kesher-kicker{
+  display:block;
+  font-size: 12px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: var(--kesher-gold-muted);
+  margin-bottom: 24px;
+}
+.kesher-title{
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 300;
+  color: var(--kesher-offwhite);
+  letter-spacing: .02em;
+  margin:0;
+  font-size: clamp(24px, 2.4vw, 40px);
+}
+
+.kesher-lookbook__grid{
+  display:grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 768px){
+  .kesher-lookbook__grid{
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    grid-auto-rows: 380px;
+  }
+}
+
+/* Layout options (mimic Tailwind col/row spans) */
+.kesher-lb--tall{ grid-column: span 1; grid-row: span 2; }
+.kesher-lb--normal{ grid-column: span 1; grid-row: span 1; }
+.kesher-lb--wide{ grid-column: span 2; grid-row: span 1; }
+
+@media (max-width: 767px){
+  .kesher-lb--tall,
+  .kesher-lb--wide{ grid-column: span 1; grid-row: span 1; }
+}
+
+.kesher-lookbook__item{
+  overflow:hidden;
+}
+.kesher-lookbook__img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter: grayscale(1);
+  transform: scale(1);
+  transition: filter 1000ms ease, transform 1000ms ease;
+}
+.kesher-lookbook__item:hover .kesher-lookbook__img{
+  filter: grayscale(0);
+  transform: scale(1.03);
+}
+
+/* ---------- Movement ---------- */
+.kesher-movement{
+  padding: 128px 0;
+  background: var(--kesher-bg);
+}
+.kesher-movement__head{
+  text-align:center;
+  margin-bottom: 64px;
+}
+
+.kesher-movement__frame{
+  position:relative;
+  width:100%;
+  aspect-ratio: 16 / 9;
+  overflow:hidden;
+  border: 1px solid rgba(243,240,232,.10);
+}
+
+.kesher-movement__video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter: grayscale(.50);
+}
+
+.kesher-movement__overlay{
+  position:absolute;
+  inset:0;
+  background: rgba(10,10,10,.10);
+  pointer-events:none;
+}
+
+.kesher-movement__placeholder{
+  padding: 48px;
+  color: rgba(243,240,232,.70);
+  border: 1px dashed rgba(243,240,232,.20);
+}
+
+/* ---------- Brand Story + Philosophy ---------- */
+.kesher-brand-story{
+  padding: 224px 0;
+  background: rgba(255,255,255,.03); /* aproxima do bg-card */
+}
+.kesher-brand-story__wrap{ max-width: 900px; text-align:center; }
+.kesher-brand-story__title{
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 300;
+  color: var(--kesher-offwhite);
+  margin:0;
+  line-height:1.1;
+  font-size: clamp(36px, 4.8vw, 72px);
+}
+.kesher-hebrew{
+  color: var(--kesher-gold);
+  margin: 0 12px;
+  font-size: .72em;
+  font-weight: 300;
+}
+.kesher-body{
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: rgba(243,240,232,.72);
+  line-height: 1.85;
+  margin: 0;
+}
+.kesher-brand-story__lead{
+  margin-top: 56px;
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 300;
+  color: rgba(243,240,232,.72);
+}
+.kesher-brand-story__copy{ margin-top: 28px; display:flex; flex-direction:column; gap: 28px; }
+.kesher-rule{
+  width: 64px;
+  height: 1px;
+  background: var(--kesher-gold);
+  margin: 64px auto 0;
+  transform-origin: left center;
+}
+.kesher-rule--lg{ width: 80px; margin-top: 80px; }
+
+/* Philosophy */
+.kesher-philosophy{
+  padding: 224px 0;
+  background: var(--kesher-bg);
+}
+.kesher-philosophy__wrap{
+  max-width: 720px;
+  text-align:center;
+}
+.kesher-philosophy__title{
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 300;
+  color: var(--kesher-offwhite);
+  margin: 24px 0 0;
+  line-height: 1.5;
+  font-size: clamp(26px, 3vw, 40px);
+}
+.kesher-philosophy .kesher-body{ margin-top: 28px; font-size: 16px; }
+
+/* ---------- Quality Icons ---------- */
+.kesher-qualities{
+  padding: 176px 0;
+  background: var(--kesher-bg);
+  border-top: 1px solid rgba(243,240,232,.08);
+}
+.kesher-qualities__head{ text-align:center; margin-bottom: 80px; }
+.kesher-qualities__grid{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 48px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+@media (min-width: 900px){
+  .kesher-qualities__grid{
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 32px;
+  }
+}
+.kesher-qualities__item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap: 14px;
+}
+.kesher-qualities__icon{
+  width: 24px;
+  height: 24px;
+  color: var(--kesher-gold-muted);
+}
+.kesher-qualities__icon svg{ width:100%; height:100%; display:block; }
+.kesher-qualities__title{
+  margin:0;
+  font-size: 12px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--kesher-offwhite);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 600;
+}
+.kesher-qualities__desc{
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: rgba(243,240,232,.65);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* ---------- Shipping / Logistics ---------- */
+.kesher-shipping{
+  padding: 128px 0;
+  background: var(--kesher-bg);
+  border-top: 1px solid rgba(243,240,232,.08);
+}
+.kesher-shipping__wrap{ max-width: 980px; text-align:center; }
+.kesher-shipping__title{ margin-top: 0; }
+.kesher-shipping__grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-top: 64px;
+}
+@media (min-width: 640px){
+  .kesher-shipping__grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 980px){
+  .kesher-shipping__grid{ grid-template-columns: repeat(4, 1fr); gap: 40px; }
+}
+.kesher-shipping__item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap: 12px;
+}
+.kesher-shipping__icon{
+  width: 20px;
+  height: 20px;
+  color: var(--kesher-gold-muted);
+}
+.kesher-shipping__icon svg{ width:100%; height:100%; display:block; }
+.kesher-shipping__text{
+  margin:0;
+  font-size: 12px;
+  letter-spacing: .02em;
+  color: rgba(243,240,232,.65);
+  line-height: 1.7;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* ---------- Collection Grid ---------- */
+.kesher-collection{
+  padding: 128px 0;
+  background: var(--kesher-bg);
+}
+.kesher-collection__head{
+  text-align:center;
+  margin-bottom: 96px;
+}
+
+.kesher-collection__grid{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 4px; /* gap-1 aproximado */
+}
+@media (min-width: 768px){
+  .kesher-collection__grid{ grid-template-columns: repeat(2, 1fr); }
+}
+
+.kesher-collection__card{
+  position:relative;
+  display:block;
+  overflow:hidden;
+  text-decoration:none;
+  background: rgba(255,255,255,.03); /* bg-secondary */
+}
+
+.kesher-collection__media{
+  aspect-ratio: 3 / 4;
+  overflow:hidden;
+  background:#111;
+}
+.kesher-collection__img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  filter: grayscale(1);
+  transform: scale(1);
+  transition: transform 1000ms ease, filter 1000ms ease;
+}
+.kesher-collection__card:hover .kesher-collection__img{
+  transform: scale(1.05);
+  filter: grayscale(0);
+}
+
+.kesher-collection__overlay{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height: 48%;
+  background: linear-gradient(to top, rgba(10,10,10,.90), rgba(10,10,10,0));
+  pointer-events:none;
+}
+
+.kesher-collection__meta{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  padding: 32px;
+}
+
+.kesher-collection__subtitle{
+  margin:0 0 8px;
+  font-size: 12px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: rgba(243,240,232,.50);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.kesher-collection__name{
+  margin:0;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: var(--kesher-offwhite);
+}
+.kesher-collection__price{
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: rgba(243,240,232,.40);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.kesher-collection__empty{
+  padding: 32px;
+  border: 1px dashed rgba(243,240,232,.20);
+  color: rgba(243,240,232,.70);
+  text-align:center;
+}

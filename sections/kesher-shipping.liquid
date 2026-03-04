@@ -1,0 +1,73 @@
+<section class="kesher-shipping kesher-section">
+  <div class="kesher-container kesher-shipping__wrap" data-kesher-inview>
+    <span class="kesher-kicker" data-kesher-reveal="fade" style="--kesher-delay: 0s;">
+      {{ section.settings.kicker }}
+    </span>
+    <h2 class="kesher-title kesher-shipping__title" data-kesher-reveal="rise" style="--kesher-delay: 0.1s;">
+      {{ section.settings.title }}
+    </h2>
+
+    <div class="kesher-shipping__grid">
+      {% for block in section.blocks %}
+        {% if block.type == "item" %}
+          <div class="kesher-shipping__item" data-kesher-reveal="fade" style="--kesher-delay: {{ forloop.index0 | times: section.settings.stagger }}s;" {{ block.shopify_attributes }}>
+            <div class="kesher-shipping__icon" aria-hidden="true">
+              {% case block.settings.icon %}
+                {% when 'mappin' %}{% render 'kesher-icon-mappin' %}
+                {% when 'gem' %}{% render 'kesher-icon-gem' %}
+                {% when 'shield' %}{% render 'kesher-icon-shield' %}
+                {% when 'truck' %}{% render 'kesher-icon-truck' %}
+                {% else %}{% render 'kesher-icon-truck' %}
+              {% endcase %}
+            </div>
+            <p class="kesher-shipping__text">{{ block.settings.text }}</p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Logistics (Shipping)",
+    "settings": [
+      { "type": "text", "id": "kicker", "label": "Kicker", "default": "Logistics" },
+      { "type": "text", "id": "title", "label": "Título", "default": "Delivered with Care" },
+      { "type": "range", "id": "stagger", "label": "Stagger (s)", "min": 0.05, "max": 0.5, "step": 0.05, "default": 0.2 }
+    ],
+    "blocks": [
+      {
+        "type": "item",
+        "name": "Item",
+        "settings": [
+          {
+            "type": "select",
+            "id": "icon",
+            "label": "Ícone",
+            "default": "truck",
+            "options": [
+              { "value": "mappin", "label": "Map Pin" },
+              { "value": "gem", "label": "Gem" },
+              { "value": "shield", "label": "Shield" },
+              { "value": "truck", "label": "Truck" }
+            ]
+          },
+          { "type": "text", "id": "text", "label": "Texto", "default": "Reliable and trackable logistics" }
+        ]
+      }
+    ],
+    "max_blocks": 8,
+    "presets": [
+      {
+        "name": "Kesher — Logistics (Shipping)",
+        "blocks": [
+          { "type": "item", "settings": { "icon": "mappin", "text": "Nationwide shipping across Brazil" } },
+          { "type": "item", "settings": { "icon": "gem", "text": "Premium packaging on every order" } },
+          { "type": "item", "settings": { "icon": "shield", "text": "Limited production, guaranteed quality" } },
+          { "type": "item", "settings": { "icon": "truck", "text": "Reliable and trackable logistics" } }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+</section>
