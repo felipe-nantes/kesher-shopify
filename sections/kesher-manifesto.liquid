@@ -1,0 +1,61 @@
+<section id="manifesto" class="kesher-manifesto">
+  <div class="kesher-container kesher-manifesto__wrap" data-kesher-inview>
+    <span class="kesher-manifesto__label" data-kesher-reveal="fade" style="--kesher-delay: 0s;">
+      {{ section.settings.label }}
+    </span>
+
+    <div class="kesher-manifesto__lines">
+      {% for block in section.blocks %}
+        {% if block.type == "line" and block.settings.text != blank %}
+          <p
+            class="kesher-manifesto__line"
+            data-kesher-reveal="rise"
+            style="--kesher-delay: {{ 0.4 | plus: forloop.index0 | times: section.settings.stagger }}s;"
+            {{ block.shopify_attributes }}
+          >
+            {{ block.settings.text }}
+          </p>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div
+      class="kesher-manifesto__rule"
+      data-kesher-reveal="rule"
+      style="--kesher-delay: {{ section.settings.rule_delay }}s;"
+      aria-hidden="true"
+    ></div>
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Manifesto",
+    "settings": [
+      { "type": "text", "id": "label", "label": "Rótulo", "default": "Manifesto" },
+      { "type": "range", "id": "stagger", "label": "Stagger entre linhas (s)", "min": 0.1, "max": 0.8, "step": 0.05, "default": 0.30 },
+      { "type": "range", "id": "rule_delay", "label": "Delay da linha final (s)", "min": 0, "max": 4, "step": 0.1, "default": 2.0 }
+    ],
+    "blocks": [
+      {
+        "type": "line",
+        "name": "Linha",
+        "settings": [
+          { "type": "text", "id": "text", "label": "Texto", "default": "We do not conform." }
+        ]
+      }
+    ],
+    "max_blocks": 10,
+    "presets": [
+      {
+        "name": "Kesher — Manifesto",
+        "blocks": [
+          { "type": "line", "settings": { "text": "We do not conform." } },
+          { "type": "line", "settings": { "text": "We do not shout." } },
+          { "type": "line", "settings": { "text": "We stand." } },
+          { "type": "line", "settings": { "text": "Connected above what is seen." } }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+</section>

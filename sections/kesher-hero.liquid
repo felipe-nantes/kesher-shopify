@@ -1,17 +1,44 @@
-<section class="kesher-section">
-  <div class="kesher-container">
-    <h1>{{ section.settings.title }}</h1>
-    <p>{{ section.settings.subtitle }}</p>
+<section class="kesher-hero" data-kesher-reveal="fade" style="--kesher-hero-duration: {{ section.settings.fade_duration }}s; --kesher-hero-delay: {{ section.settings.fade_delay }}s;">
+  <div class="kesher-hero__bg">
+    {% if section.settings.background_image != blank %}
+      {{ section.settings.background_image | image_url: width: 2400 | image_tag: loading: 'lazy', class: 'kesher-hero__bg-img', alt: '' }}
+    {% else %}
+      <div class="kesher-hero__bg-fallback"></div>
+    {% endif %}
+    <div class="kesher-hero__overlay" style="--kesher-hero-overlay: {{ section.settings.overlay_opacity }};"></div>
   </div>
-</section>
 
-{% schema %}
-{
-  "name": "Kesher - Hero (Base)",
-  "settings": [
-    { "type": "text", "id": "title", "label": "Título", "default": "KESHER WEAR" },
-    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Connection Above Conformity" }
-  ],
-  "presets": [{ "name": "Kesher - Hero (Base)" }]
-}
-{% endschema %}
+  <div class="kesher-hero__content">
+    <div class="kesher-hero__eyebrow" data-kesher-reveal="slide-down" style="--kesher-delay: 0.8s;">
+      <h1 class="kesher-hero__brand">{{ section.settings.brand_label }}</h1>
+    </div>
+
+    <p class="kesher-hero__headline" data-kesher-reveal="fade" style="--kesher-delay: 1.5s;">
+      {{ section.settings.headline }}
+    </p>
+
+    {% if section.settings.cta_label != blank %}
+      <a class="kesher-hero__cta" href="{{ section.settings.cta_href }}" data-kesher-reveal="fade" style="--kesher-delay: 2.5s;">
+        {{ section.settings.cta_label }}
+      </a>
+    {% endif %}
+  </div>
+
+  {% schema %}
+  {
+    "name": "Kesher — Hero",
+    "settings": [
+      { "type": "image_picker", "id": "background_image", "label": "Imagem de fundo" },
+      { "type": "range", "id": "overlay_opacity", "label": "Opacidade do overlay", "min": 0, "max": 1, "step": 0.05, "default": 0.40 },
+      { "type": "text", "id": "brand_label", "label": "Texto superior (brand)", "default": "Kesher Wear" },
+      { "type": "text", "id": "headline", "label": "Headline", "default": "Connection Above Conformity" },
+      { "type": "text", "id": "cta_label", "label": "Texto do botão", "default": "Enter" },
+      { "type": "text", "id": "cta_href", "label": "Link do botão", "default": "#manifesto" },
+
+      { "type": "range", "id": "fade_duration", "label": "Duração do fade (s)", "min": 0.5, "max": 4, "step": 0.1, "default": 2.0 },
+      { "type": "range", "id": "fade_delay", "label": "Delay do bloco (s)", "min": 0, "max": 2, "step": 0.1, "default": 0.5 }
+    ],
+    "presets": [{ "name": "Kesher — Hero" }]
+  }
+  {% endschema %}
+</section>

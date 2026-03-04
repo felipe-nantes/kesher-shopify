@@ -1,2 +1,155 @@
 .kesher-section { position: relative; }
 .kesher-container { max-width: 1200px; margin: 0 auto; padding: 48px 24px; }
+
+/* ---------- Kesher Reveal (Hero + Manifesto) ---------- */
+:root{
+  --kesher-bg:#0a0a0a;
+  --kesher-offwhite:#f3f0e8;
+  --kesher-gold-muted:#b9a46a;
+  --kesher-gold:#c8b26a;
+  --kesher-line:rgba(243,240,232,.18);
+}
+
+.kesher-hero{
+  position:relative;
+  height:100vh;
+  width:100%;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--kesher-bg);
+}
+
+.kesher-hero__bg{ position:absolute; inset:0; }
+.kesher-hero__bg-img{
+  width:100%; height:100%;
+  object-fit:cover;
+  opacity:.60;
+  display:block;
+}
+.kesher-hero__bg-fallback{ position:absolute; inset:0; background:#111; }
+.kesher-hero__overlay{
+  position:absolute; inset:0;
+  background: rgba(10,10,10, var(--kesher-hero-overlay, .40));
+}
+
+.kesher-hero__content{
+  position:relative;
+  z-index:10;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:48px;
+  padding: 0 24px;
+}
+
+.kesher-hero__brand{
+  font-size: 14px;
+  letter-spacing: .5em;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: rgba(243,240,232,.70);
+  margin:0;
+}
+
+.kesher-hero__headline{
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--kesher-offwhite);
+  letter-spacing: .02em;
+  line-height: 1.12;
+  margin:0;
+  font-size: clamp(34px, 5vw, 72px);
+}
+
+.kesher-hero__cta{
+  margin-top: 32px;
+  font-size: 12px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: rgba(243,240,232,.60);
+  border: 1px solid rgba(243,240,232,.20);
+  padding: 16px 40px;
+  text-decoration:none;
+  transition: background-color 700ms ease, border-color 700ms ease, color 700ms ease;
+}
+.kesher-hero__cta:hover{
+  background: rgba(243,240,232,.05);
+  border-color: rgba(243,240,232,.40);
+  color: rgba(243,240,232,.85);
+}
+
+/* Manifesto */
+.kesher-manifesto{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 128px 24px;
+  background: var(--kesher-bg);
+  color: var(--kesher-offwhite);
+}
+.kesher-manifesto__wrap{ max-width: 900px; margin: 0 auto; text-align:center; }
+
+.kesher-manifesto__label{
+  display:block;
+  margin-bottom: 64px;
+  font-size: 12px;
+  letter-spacing: .4em;
+  text-transform: uppercase;
+  color: var(--kesher-gold-muted);
+}
+
+.kesher-manifesto__lines{ display:flex; flex-direction:column; gap:24px; margin-top: 64px; }
+.kesher-manifesto__line{
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 300;
+  line-height: 1.12;
+  margin:0;
+  color: var(--kesher-offwhite);
+  font-size: clamp(30px, 4.2vw, 64px);
+}
+
+.kesher-manifesto__rule{
+  width: 64px;
+  height: 1px;
+  background: var(--kesher-gold);
+  margin: 80px auto 0;
+  transform-origin: left center;
+}
+
+/* Reveal system (IntersectionObserver) */
+[data-kesher-reveal]{
+  opacity: 0;
+  transform: translateY(0);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+  transition-delay: var(--kesher-delay, 0s);
+  will-change: opacity, transform;
+}
+
+[data-kesher-reveal="fade"]{ transform: translateY(0); }
+[data-kesher-reveal="slide-down"]{ transform: translateY(-20px); }
+[data-kesher-reveal="rise"]{ transform: translateY(30px); }
+
+[data-kesher-reveal="rule"]{
+  opacity: 1;              /* regra aparece via scale */
+  transform: scaleX(0);
+  transition: transform 1.5s ease;
+  transition-delay: var(--kesher-delay, 0s);
+}
+
+.kesher-is-visible[data-kesher-reveal],
+.kesher-is-visible [data-kesher-reveal]{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.kesher-is-visible[data-kesher-reveal="rule"]{
+  transform: scaleX(1);
+}
+.kesher-is-visible [data-kesher-reveal="rule"]{
+  transform: scaleX(1);
+}

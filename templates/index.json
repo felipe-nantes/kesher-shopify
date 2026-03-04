@@ -1,6 +1,7 @@
 {
   "sections": {
-    "hero": { "type": "kesher-hero" }
+    "hero": { "type": "kesher-hero" },
+    "manifesto": { "type": "kesher-manifesto" }
   },
-  "order": ["hero"]
+  "order": ["hero", "manifesto"]
 }
