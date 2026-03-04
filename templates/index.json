@@ -1,14 +1,60 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "hero": { "type": "kesher-hero" },
-    "manifesto": { "type": "kesher-manifesto" },
-    "collection": { "type": "kesher-collection" },
-    "lookbook": { "type": "kesher-lookbook" },
-    "movement": { "type": "kesher-movement" },
-    "brand_story": { "type": "kesher-brand-story" },
-    "story": { "type": "kesher-story" },
-    "quality": { "type": "kesher-quality-icons" },
-    "shipping": { "type": "kesher-shipping" }
+    "hero": {
+      "type": "kesher-hero",
+      "settings": {}
+    },
+    "manifesto": {
+      "type": "kesher-manifesto",
+      "settings": {}
+    },
+    "collection": {
+      "type": "kesher-collection",
+      "settings": {}
+    },
+    "lookbook": {
+      "type": "kesher-lookbook",
+      "settings": {}
+    },
+    "movement": {
+      "type": "kesher-movement",
+      "settings": {}
+    },
+    "brand_story": {
+      "type": "kesher-brand-story",
+      "settings": {}
+    },
+    "story": {
+      "type": "kesher-story",
+      "settings": {}
+    },
+    "quality": {
+      "type": "kesher-quality-icons",
+      "settings": {}
+    },
+    "shipping": {
+      "type": "kesher-shipping",
+      "settings": {}
+    }
   },
-  "order": ["hero","manifesto","collection","lookbook","movement","brand_story","story","quality","shipping"]
+  "order": [
+    "hero",
+    "manifesto",
+    "collection",
+    "lookbook",
+    "movement",
+    "brand_story",
+    "story",
+    "quality",
+    "shipping"
+  ]
 }
