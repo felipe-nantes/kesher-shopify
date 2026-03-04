@@ -1,0 +1,17 @@
+<section class="kesher-section">
+  <div class="kesher-container">
+    <h1>{{ section.settings.title }}</h1>
+    <p>{{ section.settings.subtitle }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Kesher - Hero (Base)",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Título", "default": "KESHER WEAR" },
+    { "type": "text", "id": "subtitle", "label": "Subtítulo", "default": "Connection Above Conformity" }
+  ],
+  "presets": [{ "name": "Kesher - Hero (Base)" }]
+}
+{% endschema %}

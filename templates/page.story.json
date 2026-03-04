@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "kesher-story-page" }
+  },
+  "order": ["main"]
+}
